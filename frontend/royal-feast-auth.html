@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Royal Feast</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #1a1a1a;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .card {
+    display: flex;
+    width: 100%;
+    max-width: 760px;
+    background: #1e1e1e;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px #2a2a2a;
+  }
+
+  .banner {
+    position: relative;
+    flex: 1;
+    min-width: 320px;
+    background: url('https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80') center/cover no-repeat;
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.75) 100%);
+  }
+  .banner-content { position: relative; z-index: 1; }
+  .banner-content h1 {
+    color: #fff;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 14px;
+  }
+  .banner-content h1 .accent { color: #ff6a00; }
+  .banner-content p {
+    color: #e6e6e6;
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  .form-panel {
+    flex: 1.1;
+    min-width: 320px;
+    background: #1e1e1e;
+    padding: 36px 34px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .form-title {
+    text-align: center;
+    color: #fff;
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 26px;
+  }
+  .form-title .accent { color: #ff6a00; }
+
+  form { display: flex; flex-direction: column; gap: 12px; }
+
+  .row-2 { display: flex; gap: 10px; }
+  .row-2 input { flex: 1; min-width: 0; }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="tel"] {
+    width: 100%;
+    background: #2c2c2c;
+    border: 1px solid #3a3a3a;
+    border-radius: 6px;
+    padding: 11px 14px;
+    color: #fff;
+    font-size: 13.5px;
+    outline: none;
+    transition: border-color 0.15s ease;
+  }
+  input::placeholder { color: #8a8a8a; }
+  input:focus { border-color: #ff6a00; }
+
+  .options-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 4px 0 6px;
+    font-size: 12.5px;
+  }
+  .remember {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    font-weight: 600;
+  }
+  .remember input[type="checkbox"] {
+    width: 14px;
+    height: 14px;
+    accent-color: #ff6a00;
+  }
+  .forgot { color: #ccc; }
+  .forgot a { color: #ff6a00; text-decoration: none; }
+  .forgot a:hover { text-decoration: underline; }
+
+  .submit-btn {
+    background: #ff6a00;
+    border: none;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.15s ease;
+  }
+  .submit-btn:hover { background: #e85f00; }
+
+  .switch-text {
+    text-align: center;
+    color: #bdbdbd;
+    font-size: 12.5px;
+    margin-top: 18px;
+  }
+  .switch-text a {
+    color: #ff6a00;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .switch-text a:hover { text-decoration: underline; }
+
+  .page { display: none; }
+  .page.active { display: flex; }
+
+  @media (max-width: 680px) {
+    .card { flex-direction: column; }
+    .banner { min-height: 220px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SIGN UP PAGE -->
+<div class="card page active" id="signup-page">
+  <div class="banner">
+    <div class="banner-content">
+      <h1>Welcome to <span class="accent">Royal</span> Feast</h1>
+      <p>Delicious food delivered to your doorstep.<br>Login to continue ordering your favorite meals.</p>
+    </div>
+  </div>
+  <div class="form-panel">
+    <div class="form-title">Sign Up For <span class="accent">Royal</span> Feast</div>
+    <form id="signup-form">
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <input type="tel" placeholder="Phone Number" required>
+      <input type="text" placeholder="Address" required>
+      <div class="row-2">
+        <input type="password" placeholder="Password" required>
+        <input type="password" placeholder="Confirm Password" required>
+      </div>
+      <button type="submit" class="submit-btn">Create Account</button>
+    </form>
+    <div class="switch-text">Already have an account ? <a onclick="showPage('login')">log in</a></div>
+  </div>
+</div>
+
+<!-- LOGIN PAGE -->
+<div class="card page" id="login-page">
+  <div class="banner">
+    <div class="banner-content">
+      <h1>Welcome to <span class="accent">Royal</span> Feast</h1>
+      <p>Delicious food delivered to your doorstep.<br>Login to continue ordering your favorite meals.</p>
+    </div>
+  </div>
+  <div class="form-panel">
+    <div class="form-title">Log in to <span class="accent">Royal</span> Feast</div>
+    <form id="login-form">
+      <input type="email" placeholder="Email Address" required>
+      <input type="password" placeholder="Password" required>
+      <div class="options-row">
+        <label class="remember">
+          <input type="checkbox">
+          Remember me
+        </label>
+        <div class="forgot">Forgot password? <a href="#">Reset</a></div>
+      </div>
+      <button type="submit" class="submit-btn">Login</button>
+    </form>
+    <div class="switch-text">Already don't have an account ? <a onclick="showPage('signup')">Sing in</a></div>
+  </div>
+</div>
+
+<script>
+  function showPage(name) {
+    document.getElementById('signup-page').classList.remove('active');
+    document.getElementById('login-page').classList.remove('active');
+    document.getElementById(name + '-page').classList.add('active');
+  }
+
+  document.getElementById('signup-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    showPage('login');
+  });
+
+  document.getElementById('login-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    window.location.href = 'royal-feast-home.html';
+  });
+</script>
+
+</body>
+</html>

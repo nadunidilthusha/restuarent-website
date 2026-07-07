@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Royal Feast - Home</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #141414;
+    color: #fff;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  /* NAVBAR */
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #141414;
+    padding: 16px 40px;
+  }
+  .logo { font-size: 18px; font-weight: 700; }
+  .logo .accent { color: #ff6a00; }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    font-size: 13.5px;
+  }
+  .nav-links a { color: #ccc; transition: color 0.15s ease; }
+  .nav-links a.active, .nav-links a:hover { color: #ff6a00; }
+  .order-btn {
+    background: #ff6a00;
+    color: #fff;
+    padding: 9px 20px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+  }
+  .order-btn:hover { background: #e85f00; }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .cart-icon-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background: #232323;
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: #ff6a00;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .cart-icon-link:hover {
+    background: #2c2c2c;
+    border-color: #ff6a00;
+  }
+  .cart-icon-link svg {
+    width: 19px;
+    height: 19px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff6a00;
+    color: #fff;
+    font-size: 9.5px;
+    font-weight: 700;
+    min-width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 3px;
+    border: 2px solid #141414;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 380px;
+    background: url('https://images.unsplash.com/photo-1544025162-d76694265947?w=1200&q=80') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(0,0,0,0.75) 30%, rgba(0,0,0,0.25) 100%);
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 420px; }
+  .hero-content h1 {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 14px;
+  }
+  .hero-content p {
+    font-size: 13.5px;
+    color: #e6e6e6;
+    margin-bottom: 22px;
+  }
+  .hero-buttons { display: flex; gap: 12px; }
+  .btn-explore, .btn-book {
+    padding: 11px 20px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-explore { background: #ff6a00; color: #fff; }
+  .btn-explore:hover { background: #e85f00; }
+  .btn-book { background: #f5c400; color: #1a1a1a; }
+  .btn-book:hover { background: #dcae00; }
+
+  /* SECTION TITLES */
+  .section-title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 40px 0 24px;
+  }
+
+  /* CATEGORIES */
+  .categories {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 0 20px;
+  }
+  .category-pill {
+    background: #232323;
+    border-radius: 20px;
+    padding: 8px 18px;
+    font-size: 12.5px;
+    color: #ddd;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* DISHES */
+  .dishes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 30px 20px 10px;
+  }
+  .dish-card {
+    background: #1e1e1e;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 220px;
+  }
+  .dish-card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    display: block;
+  }
+  .dish-info { padding: 12px 14px; }
+  .dish-info h3 { font-size: 14.5px; margin-bottom: 4px; }
+  .dish-info p { font-size: 11.5px; color: #999; margin-bottom: 10px; }
+  .dish-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .dish-price { font-size: 13px; font-weight: 700; color: #fff; }
+  .dish-order-btn {
+    background: #e53935;
+    color: #fff;
+    border: none;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .dish-order-btn:hover { background: #c9302c; }
+
+  /* PROMO BANNER */
+  .promo {
+    margin: 40px 0;
+    background: linear-gradient(90deg, #ff6a00, #ff4d4d);
+    text-align: center;
+    padding: 26px 20px;
+  }
+  .promo h2 { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+  .promo p { font-size: 13px; }
+
+  /* TESTIMONIALS */
+  .testimonials { padding: 10px 20px 40px; }
+  .testimonial-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+  .testimonial-card {
+    background: #1e1e1e;
+    border-radius: 10px;
+    padding: 18px 20px;
+    width: 220px;
+    font-size: 12.5px;
+    color: #ddd;
+    text-align: center;
+  }
+  .testimonial-card .author {
+    margin-top: 10px;
+    font-weight: 700;
+    color: #fff;
+    font-size: 12px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #0f0f0f;
+    padding: 34px 40px 18px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: space-between;
+    font-size: 12.5px;
+    color: #999;
+  }
+  footer .col { flex: 1; min-width: 180px; }
+  footer h4 { color: #ff6a00; font-size: 13px; margin-bottom: 10px; }
+  footer .col.brand h4 { color: #fff; }
+  footer .col.brand h4 .accent { color: #ff6a00; }
+  footer p, footer li { line-height: 1.8; }
+  footer ul { list-style: none; }
+  .footer-bottom {
+    text-align: center;
+    color: #666;
+    font-size: 11.5px;
+    padding-top: 20px;
+    margin-top: 20px;
+    border-top: 1px solid #232323;
+  }
+  .payment-badges { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+  .payment-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: #ccc;
+  }
+  .payment-badge svg { width: 20px; height: 20px; flex-shrink: 0; }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo"><span class="accent">Royal</span> Feast</div>
+  <ul class="nav-links">
+    <li><a href="royal-feast-home.html" class="active">Home</a></li>
+    <li><a href="royal-feast-menu.html">Menu</a></li>
+    <li><a href="royal-feast-services.html">Services</a></li>
+    <li><a href="royal-feast-about.html">About Us</a></li>
+    <li><a href="royal-feast-contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="royal-feast-cart.html" class="cart-icon-link" aria-label="Cart">
+      <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+      <span class="cart-badge">3</span>
+    </a>
+    <a href="royal-feast-auth.html"><button class="order-btn">Order Now</button></a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>Delicious Food Delivered Fast</h1>
+    <p>Fresh ingredients, great taste, and fast delivery to your home.</p>
+    <div class="hero-buttons">
+      <button class="btn-explore" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Explore Menu</button>
+      <button class="btn-book">Book Table</button>
+    </div>
+  </div>
+</section>
+
+<h2 class="section-title">Food Categories</h2>
+<div class="categories">
+  <div class="category-pill">🍔 Burger</div>
+  <div class="category-pill">🍕 Pizza</div>
+  <div class="category-pill">🍜 Noodles</div>
+  <div class="category-pill">🥗 Salad</div>
+  <div class="category-pill">🍰 Dessert</div>
+</div>
+
+<h2 class="section-title" id="menu">Popular Dishes</h2>
+<div class="dishes">
+  <div class="dish-card">
+    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80" alt="Beef Burger">
+    <div class="dish-info">
+      <h3>Beef Burger</h3>
+      <p>Cheesy beef burger</p>
+      <div class="dish-footer">
+        <span class="dish-price">Rs.1450.00</span>
+        <button class="dish-order-btn">Order</button>
+      </div>
+    </div>
+  </div>
+  <div class="dish-card">
+    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=80" alt="Seafood Special Pizza">
+    <div class="dish-info">
+      <h3>Seafood Special Pizza</h3>
+      <p>Italian style pizza</p>
+      <div class="dish-footer">
+        <span class="dish-price">Rs.1920.00</span>
+        <button class="dish-order-btn">Order</button>
+      </div>
+    </div>
+  </div>
+  <div class="dish-card">
+    <img src="Images/images (1).jpg" alt="Mutton Biryani">
+    <div class="dish-info">
+      <h3>Mutton Biryani</h3>
+      <p>Chicken/Mutton indian biryani</p>
+      <div class="dish-footer">
+        <span class="dish-price">Rs.2450.00</span>
+        <button class="dish-order-btn">Order</button>
+      </div>
+    </div>
+  </div>
+  <div class="dish-card">
+    <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=400&q=80" alt="Pasta">
+    <div class="dish-info">
+      <h3>Pasta</h3>
+      <p>Creamy alfredo pasta</p>
+      <div class="dish-footer">
+        <span class="dish-price">Rs.1650.00</span>
+        <button class="dish-order-btn">Order</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="promo">
+  <h2>💰 30% OFF First Order</h2>
+  <p>Use code FLAVOUR30</p>
+</div>
+
+<section class="testimonials">
+  <h2 class="section-title">What Customers Say</h2>
+  <div class="testimonial-cards">
+    <div class="testimonial-card">
+      "Amazing food quality and super fast delivery!"
+      <div class="author">- Kavindu</div>
+    </div>
+    <div class="testimonial-card">
+      "Best restaurant website experience I've seen."
+      <div class="author">- Nimal</div>
+    </div>
+    <div class="testimonial-card">
+      "Best restaurant website experience I've seen."
+      <div class="author">- Nimal</div>
+    </div>
+    <div class="testimonial-card">
+      "Best restaurant website experience I've seen."
+      <div class="author">- Nimal</div>
+    </div>
+    <div class="testimonial-card">
+      "Food tastes fresh and delicious every time."
+      <div class="author">- Saman</div>
+    </div>
+  </div>
+</section>
+
+<footer id="about" id="contact">
+  <div class="col brand">
+    <h4><span class="accent">Royal</span> Feast</h4>
+    <p>FlavourHub is dedicated to serving fresh, flavorful meals with exceptional quality and fast delivery. Experience great taste, fine dining, and unforgettable meals at home.</p>
+  </div>
+  <div class="col">
+    <h4>Contact Us</h4>
+    <ul>
+      <li>7 Jaltown</li>
+      <li>No 125 Malbe Road, Kortomphgm Column DH, Sri Lanka</li>
+      <li>+94123456789</li>
+      <li>info@royalfeast.com</li>
+      <li>www.royalfeast.com</li>
+    </ul>
+  </div>
+  <div class="col">
+    <h4>We Accept</h4>
+    <div class="payment-badges">
+      <div class="payment-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1a56db" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"></rect><path d="M2 10h20" stroke="#ff6a00"></path></svg>
+        Visa
+      </div>
+      <div class="payment-badge">
+        <svg viewBox="0 0 24 24"><circle cx="9" cy="12" r="6" fill="#eb001b"></circle><circle cx="15" cy="12" r="6" fill="#f79e1b" fill-opacity="0.9"></circle></svg>
+        MasterCard
+      </div>
+      <div class="payment-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="1.8"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="12" cy="12" r="3"></circle></svg>
+        Cash
+      </div>
+      <div class="payment-badge">
+        <svg viewBox="0 0 24 24" fill="#00457C"><path d="M7 4h6.5c2.5 0 4.2 1.6 3.8 4-.4 2.7-2.6 4.3-5.2 4.3H9.6l-.9 5.7H6l1.9-14zm2.3 2.1L8.6 10h1.7c1.4 0 2.5-.6 2.7-2 .2-1.3-.6-1.9-2-1.9H9.3z"></path></svg>
+        PayPal
+      </div>
+    </div>
+  </div>
+</footer>
+<div class="footer-bottom">© 2026 Royal Feast. All rights reserved.</div>
+
+</body>
+</html>
